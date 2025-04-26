@@ -13,8 +13,7 @@ client = OpenAI(
 #     instructions="You are a coding assistant that talks like a pirate.",
 #     input="How do I check if a Python object is an instance of a class?",
 # )
-assistant_response=client.chat.completions(model=st.secrets["MODEL"],
-                                           messages=st.session_state.messages)
+AI_assistant_response=client.chat.completions.create(model=st.secrets["MODEL"], messages=st.session_state.messages)
 st.write("Streamlit loves LLMs! 🤖 [Build your own chat app](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps) in minutes, then make it powerful by adding images, dataframes, or even input widgets to the chat.")
 
 st.caption("Note that this demo app isn't actually connected to any LLMs. Those are expensive ;)")
@@ -40,7 +39,7 @@ if prompt := st.chat_input("What is up?"):
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
         full_response = ""
-        assistant_response = assistant_response
+        assistant_response = AI_assistant_response
 
         # Simulate stream of response with milliseconds delay
         for chunk in assistant_response.split():
