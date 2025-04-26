@@ -40,9 +40,8 @@ if prompt := st.chat_input("What is up?"):
         message_placeholder = st.empty()
         full_response = ""
         assistant_response = client.chat.completions.create(model=st.secrets["MODEL"], messages=st.session_state.messages)
-
-        # Simulate stream of response with milliseconds delay
-        for chunk in assistant_response.split():
+                # Simulate stream of response with milliseconds delay
+        for chunk in assistant_response.assistant_response.choices[0].message.content.split():
             full_response += chunk + " "
             time.sleep(0.05)
             # Add a blinking cursor to simulate typing
