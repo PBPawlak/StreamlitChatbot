@@ -257,7 +257,7 @@ st.write("Streamlit RPG Game Master 🤖 – najpierw wybierasz akcję, potem rz
 # --- INICJALIZACJA HISTORII CZATU ---
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Witaj podróżniku! Opowiedz, co chcesz zrobić jako pierwszy krok w przygodzie."}
+        {"role": "assistant", "content": "Witaj podróżniku! Jestem Twoim Mistrzem Gry. Czy masz ulubiony system RPG, w którym chcesz zagrać, czy chcesz, żebym coś zaproponował?"}
     ]
 if "awaiting_roll" not in st.session_state:
     st.session_state.awaiting_roll = False
