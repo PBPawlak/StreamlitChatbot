@@ -121,7 +121,7 @@
 #         message_placeholder.markdown(full_response)
 #     # Dodaj odpowiedź asystenta do historii
 #     st.session_state.messages.append({"role": "assistant", "content": full_response})
-
+# 
 # ver3 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 from openai import OpenAI
 import streamlit as st
