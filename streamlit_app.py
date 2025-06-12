@@ -316,7 +316,6 @@ if not st.session_state.awaiting_roll:
         # Sprawdź, czy AI poprosiło o rzut kością
         if "Czas na rzut kością" in response:
             st.session_state.awaiting_roll = True
-            # Możesz rozbudować o rozpoznawanie typu kości (np. d20, d6) – tu domyślnie d20
             st.session_state.last_roll_type = "d20"
             st.session_state.last_roll_prompt = prompt
 
@@ -330,3 +329,5 @@ if st.session_state.awaiting_roll:
         st.session_state.messages.append({"role": "user", "content": roll_prompt})
         send_to_llm(roll_prompt)
         st.session_state.awaiting_roll = False
+        st.experimental_rerun()  # Kluczowe: natychmiast odśwież interfejs
+
