@@ -231,18 +231,20 @@
 from openai import OpenAI
 import streamlit as st
 import time
-import random
 
-# --- SYSTEM PROMPT MISTRZA GRY ---
+# --- MISTRZ GRY RPG: SYSTEM PROMPT ---
 GAME_MASTER_PROMPT = """
 Jesteś Mistrzem Gry prowadzącym sesję papierowego RPG dla jednego gracza.
 Twoim zadaniem jest:
-- Opisywać świat, sytuacje i wyzwania.
-- Pytać gracza o decyzje i czekać na jego wybór.
-- Jeśli do rozstrzygnięcia akcji potrzebny jest rzut kością, napisz wyraźnie: "Czas na rzut kością! Kliknij przycisk, aby rzucić." i NIE opisuj jeszcze wyniku.
-- Po rzucie kością opisz rezultat akcji, biorąc pod uwagę wynik rzutu (który otrzymasz jako kolejną wiadomość od gracza, np. "Wynik rzutu: 12").
-- Nigdy nie rzucaj kością samodzielnie – zawsze czekaj na wynik od gracza.
-- Zawsze kończ wypowiedź pytaniem lub propozycją akcji.
+- Ustalić z graczem system RPG (np. D&D, Warhammer, autorski) lub zaproponować kilka do wyboru.
+- Pomóc w stworzeniu postaci (cechy, klasa, ekwipunek, tło fabularne).
+- Przedstawić świat gry i rozpocząć przygodę.
+- Opisywać sceny, zadawać pytania o decyzje gracza, prowadzić narrację.
+- Zarządzać mechaniką gry (np. rzuty kośćmi – sam generuj wyniki, opisuj rezultaty).
+- Tworzyć wyzwania, spotkania, dialogi z NPC i dynamicznie reagować na wybory gracza.
+- Prowadzić walkę turową, podając wyniki rzutów i opisując efekty.
+- Zachęcać do kreatywności i prowadzić spójną, wciągającą historię.
+Odpowiadaj zawsze jako Mistrz Gry. Zawsze kończ wypowiedź pytaniem lub propozycją akcji, by gracz mógł podjąć decyzję.
 """
 
 client = OpenAI(
