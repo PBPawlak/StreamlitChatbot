@@ -1,1 +1,9 @@
-openai
+streamlit
+pdfplumber
+faiss-cpu
+langchain_huggingface
+PyMuPDF
+langchain_openai
+langchain_core
+langchain
+pydantic
