@@ -1175,7 +1175,7 @@ if "monsters" not in st.session_state:
     st.session_state.monsters = []
 
 # KSIĘGA POSTACI I POTWORÓW NA GÓRZE STRONY
-st.header("📖 Księga Postaci i Potworów")
+st.markdown('<h2 style="font-size:18px;">📖 Księga Postaci i Potworów</h2>', unsafe_allow_html=True)
 tab1, tab2 = st.tabs(["Postacie", "Potwory"])
 
 # GENEROWANIE POSTACI
