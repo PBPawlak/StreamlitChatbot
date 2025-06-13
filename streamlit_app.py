@@ -122,5 +122,5 @@ if st.session_state.awaiting_roll:
         st.session_state.messages.append({"role": "user", "content": roll_prompt})
         send_to_llm(roll_prompt)
         st.session_state.awaiting_roll = False
-        st.experimental_rerun()  # Odśwież interfejs
+        st.rerun()  # Odśwież interfejs
 
