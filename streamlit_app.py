@@ -1149,16 +1149,16 @@ Odpowiadaj zawsze jako Mistrz Gry. Kończ wypowiedź pytaniem lub propozycją ak
 Wszystkie odpowiedzi udzielaj wyłącznie po polsku.
 """
 
-# --- KONFIGURACJA KLIENTA CHUTES.AI ---
+# KONFIGURACJA KLIENTA CHUTES.AI
 client = OpenAI(
     base_url="https://llm.chutes.ai/v1",
     api_key=st.secrets["CHUTES_API_TOKEN"],
 )
 
-st.title("Streamlit RPG Game Master 🤖")
+st.title("Mistrz gry 🤖")
 st.write("Wybierasz akcję, rzucasz kością, a AI opisuje rezultat!")
 
-# --- INICJALIZACJA HISTORII CZATU I KSIĘGI ---
+# INICJALIZACJA HISTORII CZATU I KSIĘGI
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "assistant", "content": "Witaj podróżniku! Jestem Twoim Mistrzem Gry. Czy masz ulubiony system RPG, w którym chcesz zagrać, czy chcesz, żebym coś zaproponował?"}
@@ -1174,11 +1174,11 @@ if "characters" not in st.session_state:
 if "monsters" not in st.session_state:
     st.session_state.monsters = []
 
-# --- KSIĘGA POSTACI I POTWORÓW NA GÓRZE STRONY ---
+# KSIĘGA POSTACI I POTWORÓW NA GÓRZE STRONY
 st.header("📖 Księga Postaci i Potworów")
 tab1, tab2 = st.tabs(["Postacie", "Potwory"])
 
-# --- GENEROWANIE POSTACI ---
+# GENEROWANIE POSTACI
 with tab1:
     st.subheader("Stwórz nową postać")
     char_desc = st.text_input("Opis postaci (np. 'elfi łucznik z Rivendell, chaotyczny dobry')", key="char_desc")
@@ -1214,7 +1214,7 @@ Krótki opis fabularny: ...
         with st.expander(f"Postać #{idx+1}"):
             st.markdown(char)
 
-# --- GENEROWANIE POTWORA ---
+# GENEROWANIE POTWORA
 with tab2:
     st.subheader("Stwórz nowego potwora")
     monster_type = st.text_input("Typ potwora lub krótki opis (np. 'smok ognisty', 'goblin szaman')", key="monster_type")
@@ -1250,7 +1250,7 @@ Krótki opis: ...
         with st.expander(f"Potwór #{idx+1}"):
             st.markdown(monster)
 
-# --- FUNKCJA: PAMIĘĆ POSTACI I POTWORÓW ---
+# FUNKCJA: PAMIĘĆ POSTACI I POTWORÓW
 def get_game_memory():
     memory = ""
     if st.session_state.characters:
@@ -1263,7 +1263,7 @@ def get_game_memory():
             memory += f"{idx}. {monster}\n"
     return memory
 
-# --- FUNKCJA DO BUDOWANIA WIADOMOŚCI Z SYSTEM PROMPTEM I PAMIĘCIĄ ---
+# FUNKCJA DO BUDOWANIA WIADOMOŚCI Z SYSTEM PROMPTEM I PAMIĘCIĄ
 def get_messages():
     memory = get_game_memory()
     memory_message = {"role": "system", "content": f"Zapamiętaj te postacie i potwory na potrzeby sesji:\n{memory}"}
@@ -1272,13 +1272,13 @@ def get_messages():
         memory_message
     ] + st.session_state.messages
 
-# --- WYŚWIETLANIE HISTORII CZATU ---
+# WYŚWIETLANIE HISTORII CZATU
 with st.expander("🗨️ Historia czatu", expanded=True):
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-# --- WYSYŁANIE PROMPTU DO LLM ZE STREAMINGIEM ---
+# WYSYŁANIE PROMPTU DO LLM ZE STREAMINGIEM
 def send_to_llm(prompt):
     with st.chat_message("user"):
         st.markdown(prompt)
@@ -1309,7 +1309,7 @@ def send_to_llm(prompt):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
     return full_response
 
-# --- FUNKCJA DO WYKRYWANIA RZUTU KOŚCIĄ ---
+# FUNKCJA DO WYKRYWANIA RZUTU KOŚCIĄ
 def detect_roll_type(response):
     # Obsługuje zarówno "d12", "k12", "d20", "k8" itd.
     match = re.search(r"[dk](\d+)", response.lower())
@@ -1323,7 +1323,7 @@ def get_dice_sides(roll_type):
     except:
         return 20
 
-# --- OBSŁUGA DECYZJI GRACZA ---
+# OBSŁUGA DECYZJI GRACZA
 if not st.session_state.awaiting_roll:
     prompt = st.chat_input("Co robisz jako gracz?")
     if prompt:
@@ -1341,7 +1341,7 @@ if not st.session_state.awaiting_roll:
             st.session_state.last_roll_type = roll_type
             st.session_state.last_roll_prompt = prompt
 
-# --- OBSŁUGA RZUTU KOŚCIĄ ---
+# OBSŁUGA RZUTU KOŚCIĄ
 if st.session_state.awaiting_roll:
     roll_type = st.session_state.last_roll_type
     dice_sides = get_dice_sides(roll_type)
