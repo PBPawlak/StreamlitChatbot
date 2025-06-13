@@ -568,11 +568,11 @@ def send_to_llm(prompt):
         full_response = ""
         try:
             response_stream = client.chat.completions.create(
-                model="agentica-org/DeepCoder-14B-Preview",
+                model="deepseek-ai/DeepSeek-V3-0324",
                 messages=get_messages(),
                 stream=True,
                 max_tokens=1024,
-                temperature=0.7
+                temperature=0.9
             )
             for chunk in response_stream:
                 delta = None
