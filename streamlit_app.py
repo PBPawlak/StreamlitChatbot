@@ -1180,7 +1180,7 @@ tab1, tab2 = st.tabs(["Postacie", "Potwory"])
 
 # GENEROWANIE POSTACI
 with tab1:
-    st.subheader("Stwórz nową postać")
+    st.markdown('<h3 style="font-size:16px;">Stwórz nową postać</h3>', unsafe_allow_html=True)
     char_desc = st.text_input("Opis postaci (np. 'elfi łucznik z Rivendell, chaotyczny dobry')", key="char_desc")
     if st.button("🎲 Wygeneruj postać", key="gen_char"):
         char_prompt = f"""Wygeneruj statystyki postaci do gry fabularnej na podstawie poniższego opisu.
