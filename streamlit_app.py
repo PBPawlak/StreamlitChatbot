@@ -384,6 +384,7 @@ from openai import OpenAI
 GAME_MASTER_PROMPT = """
 Jesteś Mistrzem Gry prowadzącym sesję papierowego RPG dla jednego gracza.
 Twoim zadaniem jest:
+- Odpowiadać po Polsku
 - Ustalić z graczem system RPG (np. D&D, Warhammer, autorski) lub zaproponować kilka do wyboru.
 - Pomóc w stworzeniu postaci (cechy, klasa, ekwipunek, tło fabularne).
 - Przedstawić świat gry i rozpocząć przygodę.
